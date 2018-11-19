@@ -14,7 +14,7 @@ class D3D
 {
 	bool vsyncEnabled;
 	int videoCardMemory;
-	std::string videoCardDesc;
+	std::wstring videoCardDesc;
 	IDXGISwapChain *swapChain{ nullptr };
 	ID3D11Device *device{ nullptr };
 	ID3D11DeviceContext *deviceContext{ nullptr };
@@ -43,7 +43,7 @@ public:
 	void GetOrthoMatrix(D3DXMATRIX& out);
 	void GetWorldMatrix(D3DXMATRIX& out);
 
-	void GetVideoCardinfo(std::string& desc, int& memory);
+	void GetVideoCardinfo(std::wstring& desc, int& memory);
 
 
 

@@ -44,6 +44,9 @@ bool System::InitializeWindows(int & width, int & height)
 
 	ShowCursor(FALSE);
 
+	width = sw;
+	height = sh;
+
 	return true;
 }
 
