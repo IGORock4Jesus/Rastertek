@@ -10,13 +10,15 @@ bool ColorShader::SetShaderParameters(ID3D11DeviceContext * context, D3DXMATRIX 
 
 	vertexShader->GetMatricesConstantBuffer().Update(context, { world, view, proj });
 
-	return false;
+	return true;
 }
 
 void ColorShader::RenderShaders(ID3D11DeviceContext * deviceContext, int indexCount)
 {
 	vertexShader->Render(deviceContext);
 	pixelShader->Render(deviceContext);
+
+
 
 	deviceContext->DrawIndexed(indexCount, 0, 0);
 }

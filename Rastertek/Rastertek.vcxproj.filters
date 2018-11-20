@@ -14,6 +14,7 @@
     <ClCompile Include="ColorVertexShader.cpp" />
     <ClCompile Include="ConstantBuffer.cpp" />
     <ClCompile Include="ColorPixelShader.cpp" />
+    <ClCompile Include="Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.h" />
@@ -28,6 +29,7 @@
     <ClInclude Include="ColorVertexShader.h" />
     <ClInclude Include="ConstantBuffer.h" />
     <ClInclude Include="ColorPixelShader.h" />
+    <ClInclude Include="Camera.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="ColorVertexShader.hlsl" />

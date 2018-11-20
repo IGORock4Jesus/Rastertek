@@ -11,13 +11,13 @@ bool Model::InitializeBuffers(ID3D11Device * device)
 
 	int *indices = new int[indexCount];
 
-	vertices[0].position = { -1,-1,0 };
+	vertices[0].position = { -100,-100,0 };
 	vertices[0].color = { 0,1,0,1 };
 
-	vertices[1].position = { 0,1,0 };
+	vertices[1].position = { 0,100,0 };
 	vertices[1].color = { 0,1,0,1 };
 
-	vertices[2].position = { 1,-1,0 };
+	vertices[2].position = { 100,-100,0 };
 	vertices[2].color = { 0,1,0,1 };
 
 	indices[0] = 0;
