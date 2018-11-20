@@ -9,6 +9,11 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ColorShader.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="VertexShader.cpp" />
+    <ClCompile Include="PixelShader.cpp" />
+    <ClCompile Include="ColorVertexShader.cpp" />
+    <ClCompile Include="ConstantBuffer.cpp" />
+    <ClCompile Include="ColorPixelShader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.h" />
@@ -18,6 +23,11 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="ColorShader.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="VertexShader.h" />
+    <ClInclude Include="PixelShader.h" />
+    <ClInclude Include="ColorVertexShader.h" />
+    <ClInclude Include="ConstantBuffer.h" />
+    <ClInclude Include="ColorPixelShader.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="ColorVertexShader.hlsl" />

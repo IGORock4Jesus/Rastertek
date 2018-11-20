@@ -2,23 +2,23 @@
 
 
 
-bool ColorShader::InitializeShader(ID3D11Device * device, std::wstring filename, ID3D11DeviceChild **output)
-{
-
-	return false;
-}
-
-void ColorShader::ShutdownShaders()
-{
-}
-
 bool ColorShader::SetShaderParameters(ID3D11DeviceContext * context, D3DXMATRIX world, D3DXMATRIX view, D3DXMATRIX proj)
 {
+	D3DXMatrixTranspose(&world, &world);
+	D3DXMatrixTranspose(&view, &view);
+	D3DXMatrixTranspose(&proj, &proj);
+
+	vertexShader->GetMatricesConstantBuffer().Update(context, { world, view, proj });
+
 	return false;
 }
 
 void ColorShader::RenderShaders(ID3D11DeviceContext * deviceContext, int indexCount)
 {
+	vertexShader->Render(deviceContext);
+	pixelShader->Render(deviceContext);
+
+	deviceContext->DrawIndexed(indexCount, 0, 0);
 }
 
 ColorShader::ColorShader()
@@ -32,18 +32,16 @@ ColorShader::~ColorShader()
 
 bool ColorShader::Initialize(ID3D11Device * device)
 {
-	if (!InitializeShader(device, L"ColorVertexShader.cso", (ID3D11DeviceChild**)&vertexShader))
-		return false;
-
-	if (!InitializeShader(device, L"ColorPixelShader.cso", (ID3D11DeviceChild**)&pixelShader))
-		return false;
-
+	vertexShader = new ColorVertexShader(device);
+	pixelShader = new ColorPixelShader(device);
+	
 	return true;
 }
 
 void ColorShader::Shutdown()
 {
-	ShutdownShaders();
+	delete pixelShader;
+	delete vertexShader;
 }
 
 bool ColorShader::Render(ID3D11DeviceContext * deviceContext, int indexCount, D3DXMATRIX world, D3DXMATRIX view, D3DXMATRIX proj)
