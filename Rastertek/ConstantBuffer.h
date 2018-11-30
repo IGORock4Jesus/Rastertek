@@ -31,5 +31,7 @@ public:
 		}
 	}
 
+	ID3D11Buffer *operator()() { return buffer; }
+
 };
 

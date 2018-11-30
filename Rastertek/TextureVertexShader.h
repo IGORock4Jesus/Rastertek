@@ -1,11 +1,11 @@
 #pragma once
-
 #include "VertexShader.h"
-#include <D3DX10.h>
 #include "ConstantBuffer.h"
+#include <D3DX10.h>
 
 
-class ColorVertexShader : public VertexShader
+class TextureVertexShader :
+	public VertexShader
 {
 	struct Matrices
 	{
@@ -14,8 +14,8 @@ class ColorVertexShader : public VertexShader
 	ConstantBuffer<Matrices> matricesConstant;
 
 public:
-	ColorVertexShader(ID3D11Device *device);
-	~ColorVertexShader();
+	TextureVertexShader(ID3D11Device *device);
+	~TextureVertexShader();
 
 	ConstantBuffer<Matrices>& GetMatricesConstantBuffer() { return matricesConstant; }
 

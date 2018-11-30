@@ -4,25 +4,32 @@
 
 bool Model::InitializeBuffers(ID3D11Device * device)
 {
-	vertexCount = 3;
-	indexCount = 3;
+	vertexCount = 4;
+	indexCount = 6;
 
 	Vertex *vertices = new Vertex[vertexCount];
 
 	int *indices = new int[indexCount];
 
-	vertices[0].position = { -100,-100,0 };
-	vertices[0].color = { 0,1,0,1 };
+	vertices[0].position = { -1,-1,0 };
+	vertices[0].texel = { 0,1 };
 
-	vertices[1].position = { 0,100,0 };
-	vertices[1].color = { 0,1,0,1 };
+	vertices[1].position = { -1,1,0 };
+	vertices[1].texel = { 0,0 };
 
-	vertices[2].position = { 100,-100,0 };
-	vertices[2].color = { 0,1,0,1 };
+	vertices[2].position = { 1,1,0 };
+	vertices[2].texel = { 1,0 };
+
+	vertices[3].position = { 1,-1,0 };
+	vertices[3].texel = { 1,1 };
 
 	indices[0] = 0;
 	indices[1] = 1;
 	indices[2] = 2;
+	indices[3] = 0;
+	indices[4] = 2;
+	indices[5] = 3;
+	
 
 	D3D11_BUFFER_DESC bufferDesc{ 0 };
 	bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
@@ -69,7 +76,23 @@ void Model::RenderBuffers(ID3D11DeviceContext * deviceContext)
 
 	deviceContext->IASetIndexBuffer(indexBuffer, DXGI_FORMAT_R32_UINT, 0);
 
-	deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+}
+
+bool Model::LoadTexture(ID3D11Device * device, std::wstring filename)
+{
+	texture = new Texture(device, filename);
+
+	return true;
+}
+
+void Model::ReleaseTexture()
+{
+	if (texture)
+	{
+		delete texture;
+		texture = nullptr;
+	}
 }
 
 Model::Model()
@@ -85,9 +108,12 @@ Model::~Model()
 {
 }
 
-bool Model::Initialize(ID3D11Device * device)
+bool Model::Initialize(ID3D11Device * device, std::wstring textureFilename)
 {
 	if (!InitializeBuffers(device))
+		return false;
+
+	if (!LoadTexture(device, textureFilename))
 		return false;
 
 	return true;
@@ -95,6 +121,7 @@ bool Model::Initialize(ID3D11Device * device)
 
 void Model::Shutdown()
 {
+	ReleaseTexture();
 	ShutdownBuffers();
 }
 

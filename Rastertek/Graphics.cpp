@@ -17,7 +17,7 @@ bool Graphics::Render()
 
 	model.Render(d3d.GetDeviceContext());
 
-	if (!shader.Render(d3d.GetDeviceContext(), 3, world, view, proj)) {
+	if (!shader.Render(d3d.GetDeviceContext(), model.GetIndexCount(), world, view, proj, model.GetTexture())) {
 		return false;
 	}
 
@@ -42,7 +42,7 @@ bool Graphics::Initialize(int width, int height, HWND hwnd)
 
 	camera.SetPosition({ 0.0f, 0.0f, -10.0f });
 
-	if (!model.Initialize(d3d.GetDevice())) {
+	if (!model.Initialize(d3d.GetDevice(), L"pic0010.gif")) {
 		MessageBox(nullptr, L"Could not to initialize the model.", 0, MB_OK);
 		return false;
 	}

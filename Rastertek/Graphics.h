@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "ColorShader.h"
 #include "Model.h"
+#include "TextureShader.h"
 
 
 const bool FULL_SCREEN = false;
@@ -18,7 +19,7 @@ class Graphics
 	D3D d3d;
 	Camera camera;
 	Model model;
-	ColorShader shader;
+	TextureShader shader;
 
 	bool Render();
 public:

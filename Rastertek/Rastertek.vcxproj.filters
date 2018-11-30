@@ -7,14 +7,31 @@
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="D3D.cpp" />
     <ClCompile Include="Model.cpp" />
-    <ClCompile Include="ColorShader.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="VertexShader.cpp" />
     <ClCompile Include="PixelShader.cpp" />
-    <ClCompile Include="ColorVertexShader.cpp" />
     <ClCompile Include="ConstantBuffer.cpp" />
-    <ClCompile Include="ColorPixelShader.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TexturePixelShader.cpp">
+      <Filter>Tutorial 5</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureShader.cpp">
+      <Filter>Tutorial 5</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureVertexShader.cpp">
+      <Filter>Tutorial 5</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorPixelShader.cpp">
+      <Filter>Tutorial 4</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorShader.cpp">
+      <Filter>Tutorial 4</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorVertexShader.cpp">
+      <Filter>Tutorial 4</Filter>
+    </ClCompile>
+    <ClCompile Include="SamplerState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.h" />
@@ -22,17 +39,56 @@
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="D3D.h" />
     <ClInclude Include="Model.h" />
-    <ClInclude Include="ColorShader.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="VertexShader.h" />
     <ClInclude Include="PixelShader.h" />
-    <ClInclude Include="ColorVertexShader.h" />
     <ClInclude Include="ConstantBuffer.h" />
-    <ClInclude Include="ColorPixelShader.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="TexturePixelShader.h">
+      <Filter>Tutorial 5</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureShader.h">
+      <Filter>Tutorial 5</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureVertexShader.h">
+      <Filter>Tutorial 5</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorPixelShader.h">
+      <Filter>Tutorial 4</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorShader.h">
+      <Filter>Tutorial 4</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorVertexShader.h">
+      <Filter>Tutorial 4</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="SamplerState.h" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="ColorVertexShader.hlsl" />
-    <FxCompile Include="ColorPixelShader.hlsl" />
+    <FxCompile Include="TexturePixelShader.hlsl">
+      <Filter>Tutorial 5</Filter>
+    </FxCompile>
+    <FxCompile Include="TextureVertexShader.hlsl">
+      <Filter>Tutorial 5</Filter>
+    </FxCompile>
+    <FxCompile Include="ColorPixelShader.hlsl">
+      <Filter>Tutorial 4</Filter>
+    </FxCompile>
+    <FxCompile Include="ColorVertexShader.hlsl">
+      <Filter>Tutorial 4</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Tutorial 5">
+      <UniqueIdentifier>{8bd8b0f8-38cf-43d0-82d8-9b2dba9939ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tutorial 4">
+      <UniqueIdentifier>{d5e05676-d676-4d83-9ad8-647e34713a1c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Rastertek.rc" />
   </ItemGroup>
 </Project>

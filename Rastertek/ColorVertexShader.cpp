@@ -15,3 +15,10 @@ ColorVertexShader::ColorVertexShader(ID3D11Device *device)
 ColorVertexShader::~ColorVertexShader()
 {
 }
+
+void ColorVertexShader::Render(ID3D11DeviceContext * deviceContext)
+{
+	ID3D11Buffer* b[] = { matricesConstant() };
+	deviceContext->VSSetConstantBuffers(0, 1, b);
+	VertexShader::Render(deviceContext);
+}
