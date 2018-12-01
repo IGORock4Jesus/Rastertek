@@ -11,6 +11,7 @@ class Model
 	{
 		D3DXVECTOR3 position;
 		D3DXVECTOR2 texel;
+		D3DXVECTOR3 normal;
 	};
 
 	ID3D11Buffer *vertexBuffer, *indexBuffer;

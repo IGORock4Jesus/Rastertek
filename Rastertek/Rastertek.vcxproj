@@ -169,6 +169,7 @@
     <ClCompile Include="EntryPoint.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="PixelShader.cpp" />
     <ClCompile Include="SamplerState.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="DiffuseVertexShader.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="SamplerState.h" />

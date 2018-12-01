@@ -2,7 +2,7 @@
 
 
 
-bool Graphics::Render()
+bool Graphics::Render(float rotate)
 {
 	d3d.BeginScene(0.0f, 0.0f, 0.0f, 1.0f);
 
@@ -14,10 +14,11 @@ bool Graphics::Render()
 	d3d.GetWorldMatrix(world);
 	d3d.GetProjectionMatrix(proj);
 
+	D3DXMatrixRotationY(&world, rotate);
 
 	model.Render(d3d.GetDeviceContext());
 
-	if (!shader.Render(d3d.GetDeviceContext(), model.GetIndexCount(), world, view, proj, model.GetTexture())) {
+	if (!shader.Render(d3d.GetDeviceContext(), model.GetIndexCount(), world, view, proj, model.GetTexture(), light.GetDirection(), light.GetDiffuse())) {
 		return false;
 	}
 
@@ -52,12 +53,19 @@ bool Graphics::Initialize(int width, int height, HWND hwnd)
 		return false;
 	}
 
+	light.SetDiffuse({ 0,1,0,1 });
+	light.SetDirection({ -1,-1,1 });
+
 	return true;
 }
 
 bool Graphics::Frame()
 {
-	if (!Render())
+	rotation += D3DX_PI * 0.01f;
+	if (rotation >= 360.0f)
+		rotation -= 360.0f;
+
+	if (!Render(rotation))
 		return false;
 
 	return true;

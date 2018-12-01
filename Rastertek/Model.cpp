@@ -13,15 +13,19 @@ bool Model::InitializeBuffers(ID3D11Device * device)
 
 	vertices[0].position = { -1,-1,0 };
 	vertices[0].texel = { 0,1 };
+	vertices[0].normal = { 0,0,-1 };
 
 	vertices[1].position = { -1,1,0 };
 	vertices[1].texel = { 0,0 };
+	vertices[1].normal = { 0,0,-1 };
 
 	vertices[2].position = { 1,1,0 };
 	vertices[2].texel = { 1,0 };
+	vertices[2].normal = { 0,0,-1 };
 
 	vertices[3].position = { 1,-1,0 };
 	vertices[3].texel = { 1,1 };
+	vertices[3].normal = { 0,0,-1 };
 
 	indices[0] = 0;
 	indices[1] = 1;
@@ -49,7 +53,7 @@ bool Model::InitializeBuffers(ID3D11Device * device)
 	if (FAILED(device->CreateBuffer(&bufferDesc, &subresourceData, &indexBuffer)))
 		return false;
 
-	delete[]indices;
+	delete[] indices;
 	delete[] vertices;
 
 	return true;

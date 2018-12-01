@@ -3,9 +3,9 @@
 #include <Windows.h>
 #include "D3D.h"
 #include "Camera.h"
-#include "ColorShader.h"
+#include "DiffuseShader.h"
 #include "Model.h"
-#include "TextureShader.h"
+#include "Light.h"
 
 
 const bool FULL_SCREEN = false;
@@ -19,9 +19,11 @@ class Graphics
 	D3D d3d;
 	Camera camera;
 	Model model;
-	TextureShader shader;
+	DiffuseShader shader;
+	Light light;
+	float rotation{ 0.0f };
 
-	bool Render();
+	bool Render(float time);
 public:
 	Graphics();
 	~Graphics();
