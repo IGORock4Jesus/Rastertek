@@ -40,9 +40,9 @@ bool Graphics::Initialize(int width, int height, HWND hwnd)
 	if (!d3d.Initialize(width, height, VSYNC_ENABLED, hwnd, FULL_SCREEN, SCRENN_DEPTH, SCREEN_NEAR))
 		return false;
 
-	camera.SetPosition({ 0.0f, 0.0f, -10.0f });
+	camera.SetPosition({ 0.0f, 0.0f, -4.0f });
 
-	if (!model.Initialize(d3d.GetDevice(), L"pic0010.gif")) {
+	if (!model.Initialize(d3d.GetDevice(), L"test.dds")) {
 		MessageBox(nullptr, L"Could not to initialize the model.", 0, MB_OK);
 		return false;
 	}

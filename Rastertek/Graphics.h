@@ -29,5 +29,7 @@ public:
 	bool Initialize(int width, int height, HWND hwnd);
 	bool Frame();
 	void Shutdown();
+
+	Camera &Camera() { return camera; }
 };
 

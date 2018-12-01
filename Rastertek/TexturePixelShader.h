@@ -6,7 +6,7 @@
 class TexturePixelShader :
 	public PixelShader
 {
-	SamplerState *samplerState;
+	SamplerState *samplerState{ nullptr };
 
 public:
 	TexturePixelShader(ID3D11Device *device);

@@ -21,5 +21,8 @@ public:
 
 	void Render();
 	D3DXMATRIX GetViewMatrix() { return view; }
+
+	void Move(D3DXVECTOR3 v) { position += v; }
+
 };
 

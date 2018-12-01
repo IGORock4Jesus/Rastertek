@@ -88,6 +88,12 @@ bool System::Frame()
 	if (input.IsKeyDown(VK_ESCAPE))
 		return false;
 
+	if (input.IsKeyDown(VK_UP))
+		graphics.Camera().Move({ 0, 0, 1 });
+
+	if (input.IsKeyDown(VK_DOWN))
+		graphics.Camera().Move({ 0, 0, -1 });
+
 	if (!graphics.Frame())
 		return false;
 

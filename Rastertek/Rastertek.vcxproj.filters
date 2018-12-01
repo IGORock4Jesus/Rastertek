@@ -32,6 +32,15 @@
       <Filter>Tutorial 4</Filter>
     </ClCompile>
     <ClCompile Include="SamplerState.cpp" />
+    <ClCompile Include="DiffusePixelShader.cpp">
+      <Filter>Tutorial 6</Filter>
+    </ClCompile>
+    <ClCompile Include="DiffuseShader.cpp">
+      <Filter>Tutorial 6</Filter>
+    </ClCompile>
+    <ClCompile Include="DiffuseVertexShader.cpp">
+      <Filter>Tutorial 6</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.h" />
@@ -63,8 +72,16 @@
     <ClInclude Include="ColorVertexShader.h">
       <Filter>Tutorial 4</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h" />
     <ClInclude Include="SamplerState.h" />
+    <ClInclude Include="DiffusePixelShader.h">
+      <Filter>Tutorial 6</Filter>
+    </ClInclude>
+    <ClInclude Include="DiffuseShader.h">
+      <Filter>Tutorial 6</Filter>
+    </ClInclude>
+    <ClInclude Include="DiffuseVertexShader.h">
+      <Filter>Tutorial 6</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="TexturePixelShader.hlsl">
@@ -79,6 +96,12 @@
     <FxCompile Include="ColorVertexShader.hlsl">
       <Filter>Tutorial 4</Filter>
     </FxCompile>
+    <FxCompile Include="DiffusePixelShader.hlsl">
+      <Filter>Tutorial 6</Filter>
+    </FxCompile>
+    <FxCompile Include="DiffuseVertexShader.hlsl">
+      <Filter>Tutorial 6</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Tutorial 5">
@@ -87,8 +110,8 @@
     <Filter Include="Tutorial 4">
       <UniqueIdentifier>{d5e05676-d676-4d83-9ad8-647e34713a1c}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Rastertek.rc" />
+    <Filter Include="Tutorial 6">
+      <UniqueIdentifier>{c9610c62-4202-4a74-bcb4-d9b63ad16e39}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
