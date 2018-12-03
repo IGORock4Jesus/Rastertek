@@ -3,7 +3,7 @@
 #include <Windows.h>
 #include "D3D.h"
 #include "Camera.h"
-#include "DiffuseShader.h"
+#include "SpecularShader.h"
 #include "Model.h"
 #include "Light.h"
 
@@ -19,7 +19,7 @@ class Graphics
 	D3D d3d;
 	Camera camera;
 	Model model;
-	DiffuseShader shader;
+	SpecularShader shader;
 	Light light;
 	float rotation{ 0.0f };
 
@@ -28,7 +28,7 @@ public:
 	Graphics();
 	~Graphics();
 
-	bool Initialize(int width, int height, HWND hwnd);
+	bool Initialize(HINSTANCE hinstance, int width, int height, HWND hwnd);
 	bool Frame();
 	void Shutdown();
 

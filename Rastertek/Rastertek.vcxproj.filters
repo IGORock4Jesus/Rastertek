@@ -42,6 +42,24 @@
       <Filter>Tutorial 6</Filter>
     </ClCompile>
     <ClCompile Include="Light.cpp" />
+    <ClCompile Include="SimpleParser.cpp">
+      <Filter>Tutorial 7</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjParser.cpp">
+      <Filter>Tutorial 8</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenFileDialog.cpp">
+      <Filter>Tutorial 8</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecularPixelShader.cpp">
+      <Filter>Tutorial 10</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecularShader.cpp">
+      <Filter>Tutorial 10</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecularVertexShader.cpp">
+      <Filter>Tutorial 10</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.h" />
@@ -84,6 +102,28 @@
       <Filter>Tutorial 6</Filter>
     </ClInclude>
     <ClInclude Include="Light.h" />
+    <ClInclude Include="IParser.h">
+      <Filter>Tutorial 7</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleParser.h">
+      <Filter>Tutorial 7</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h" />
+    <ClInclude Include="ObjParser.h">
+      <Filter>Tutorial 8</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenFileDialog.h">
+      <Filter>Tutorial 8</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecularPixelShader.h">
+      <Filter>Tutorial 10</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecularShader.h">
+      <Filter>Tutorial 10</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecularVertexShader.h">
+      <Filter>Tutorial 10</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="TexturePixelShader.hlsl">
@@ -104,6 +144,12 @@
     <FxCompile Include="DiffuseVertexShader.hlsl">
       <Filter>Tutorial 6</Filter>
     </FxCompile>
+    <FxCompile Include="SpecularPixelShader.hlsl">
+      <Filter>Tutorial 10</Filter>
+    </FxCompile>
+    <FxCompile Include="SpecularVertexShader.hlsl">
+      <Filter>Tutorial 10</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Tutorial 5">
@@ -115,5 +161,19 @@
     <Filter Include="Tutorial 6">
       <UniqueIdentifier>{c9610c62-4202-4a74-bcb4-d9b63ad16e39}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tutorial 7">
+      <UniqueIdentifier>{85a7e32c-3471-43bc-b776-c13922679a18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tutorial 8">
+      <UniqueIdentifier>{30021c8d-bb85-4165-b9ce-2fe34f1f4ccb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tutorial 10">
+      <UniqueIdentifier>{bba0a089-0810-40be-921e-f0ae01ffa89e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Cube.txt">
+      <Filter>Tutorial 7</Filter>
+    </Text>
   </ItemGroup>
 </Project>

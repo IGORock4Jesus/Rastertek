@@ -6,7 +6,6 @@ bool System::InitializeWindows(int & width, int & height)
 {
 	ApplicationHandle = this;
 	WNDCLASSEX wc{ 0 };
-	appName = L"Engine";
 	wc.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
 	wc.lpfnWndProc = WndProc;
 	wc.hInstance = hinstance;
@@ -42,7 +41,7 @@ bool System::InitializeWindows(int & width, int & height)
 	SetForegroundWindow(hwnd);
 	SetFocus(hwnd);
 
-	ShowCursor(FALSE);
+	//ShowCursor(FALSE);
 
 	width = sw;
 	height = sh;
@@ -118,6 +117,7 @@ LRESULT CALLBACK System::WndProc(HWND h, UINT m, WPARAM w, LPARAM l)
 }
 
 System::System()
+	: hinstance{ nullptr }, hwnd{ nullptr }, appName{L"Rastertek Window"}
 {
 }
 
@@ -134,7 +134,7 @@ bool System::Initialize(HINSTANCE hinstance)
 
 	input.Initialize();
 
-	auto result = graphics.Initialize(width, height, hwnd);
+	auto result = graphics.Initialize(hinstance, width, height, hwnd);
 	if (!result)
 		return false;
 

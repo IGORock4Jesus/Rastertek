@@ -81,7 +81,7 @@ bool D3D::Initialize(int width, int height, bool vsyncEnabled, HWND hwnd, bool i
 
 	D3D_FEATURE_LEVEL featureLevel{ D3D_FEATURE_LEVEL_11_0 };
 
-	if (FAILED(result = D3D11CreateDeviceAndSwapChain(0, D3D_DRIVER_TYPE_HARDWARE, nullptr, 0, &featureLevel, 1, D3D11_SDK_VERSION, &swapChainDesc, &swapChain, &device, nullptr, &deviceContext)))
+	if (FAILED(result = D3D11CreateDeviceAndSwapChain(0, D3D_DRIVER_TYPE_HARDWARE, nullptr, D3D11_CREATE_DEVICE_DEBUG | D3D11_CREATE_DEVICE_SINGLETHREADED, &featureLevel, 1, D3D11_SDK_VERSION, &swapChainDesc, &swapChain, &device, nullptr, &deviceContext)))
 		return false;
 
 	ID3D11Texture2D *backBufferPointer;

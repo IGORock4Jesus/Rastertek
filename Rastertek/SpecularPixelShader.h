@@ -5,7 +5,7 @@
 #include <D3DX10.h>
 
 
-class DiffusePixelShader :
+class SpecularPixelShader :
 	public PixelShader
 {
 public:
@@ -14,7 +14,8 @@ public:
 		D3DXVECTOR4 ambientColor;
 		D3DXVECTOR4 diffuseColor;
 		D3DXVECTOR3 lightDirection;
-		float padding;
+		float specularPower;
+		D3DXVECTOR4 specularColor;
 	};
 
 private:
@@ -22,8 +23,8 @@ private:
 	ConstantBuffer<LightBuffer> constantBuffer;
 
 public:
-	DiffusePixelShader(ID3D11Device *device);
-	~DiffusePixelShader();
+	SpecularPixelShader(ID3D11Device *device);
+	~SpecularPixelShader();
 
 	virtual void Render(ID3D11DeviceContext *deviceContext) override;
 	ConstantBuffer<LightBuffer> &GetLightBuffer() { return constantBuffer; }

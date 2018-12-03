@@ -2,7 +2,7 @@
 
 
 
-bool DiffuseShader::SetShaderParameters(ID3D11DeviceContext * context, D3DXMATRIX world, D3DXMATRIX view, D3DXMATRIX proj, ID3D11ShaderResourceView *texture, D3DXVECTOR3 lightDirection, D3DXVECTOR4 lightColor)
+bool DiffuseShader::SetShaderParameters(ID3D11DeviceContext * context, D3DXMATRIX world, D3DXMATRIX view, D3DXMATRIX proj, ID3D11ShaderResourceView *texture, D3DXVECTOR3 lightDirection, D3DXVECTOR4 diffuseColor, D3DXVECTOR4 ambientColor)
 {
 	D3DXMatrixTranspose(&world, &world);
 	D3DXMatrixTranspose(&view, &view);
@@ -10,7 +10,7 @@ bool DiffuseShader::SetShaderParameters(ID3D11DeviceContext * context, D3DXMATRI
 
 	vertexShader->GetMatricesConstantBuffer().Update(context, { world, view, proj });
 
-	pixelShader->GetLightBuffer().Update(context, { lightColor, lightDirection, 0.0f });
+	pixelShader->GetLightBuffer().Update(context, { ambientColor, diffuseColor, lightDirection, 0.0f });
 
 	context->PSSetShaderResources(0, 1, &texture);
 
@@ -48,9 +48,9 @@ void DiffuseShader::Shutdown()
 	delete vertexShader;
 }
 
-bool DiffuseShader::Render(ID3D11DeviceContext * deviceContext, int indexCount, D3DXMATRIX world, D3DXMATRIX view, D3DXMATRIX proj, ID3D11ShaderResourceView *texture, D3DXVECTOR3 lightDirection, D3DXVECTOR4 lightColor)
+bool DiffuseShader::Render(ID3D11DeviceContext * deviceContext, int indexCount, D3DXMATRIX world, D3DXMATRIX view, D3DXMATRIX proj, ID3D11ShaderResourceView *texture, D3DXVECTOR3 lightDirection, D3DXVECTOR4 diffuseColor, D3DXVECTOR4 ambientColor)
 {
-	if (!SetShaderParameters(deviceContext, world, view, proj, texture, lightDirection, lightColor))
+	if (!SetShaderParameters(deviceContext, world, view, proj, texture, lightDirection, diffuseColor, ambientColor))
 		return false;
 
 	RenderShaders(deviceContext, indexCount);

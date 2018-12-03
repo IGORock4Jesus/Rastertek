@@ -1,46 +1,24 @@
 #include "Model.h"
-
+#include "Parser.h"
 
 
 bool Model::InitializeBuffers(ID3D11Device * device)
 {
-	vertexCount = 4;
-	indexCount = 6;
-
-	Vertex *vertices = new Vertex[vertexCount];
+	vertexCount = indexCount = loadedVertices.size();
 
 	int *indices = new int[indexCount];
 
-	vertices[0].position = { -1,-1,0 };
-	vertices[0].texel = { 0,1 };
-	vertices[0].normal = { 0,0,-1 };
-
-	vertices[1].position = { -1,1,0 };
-	vertices[1].texel = { 0,0 };
-	vertices[1].normal = { 0,0,-1 };
-
-	vertices[2].position = { 1,1,0 };
-	vertices[2].texel = { 1,0 };
-	vertices[2].normal = { 0,0,-1 };
-
-	vertices[3].position = { 1,-1,0 };
-	vertices[3].texel = { 1,1 };
-	vertices[3].normal = { 0,0,-1 };
-
-	indices[0] = 0;
-	indices[1] = 1;
-	indices[2] = 2;
-	indices[3] = 0;
-	indices[4] = 2;
-	indices[5] = 3;
-	
+	for (size_t i = 0; i < vertexCount; i++)
+	{
+		indices[i] = i;
+	}
 
 	D3D11_BUFFER_DESC bufferDesc{ 0 };
 	bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	bufferDesc.ByteWidth = sizeof(Vertex) * vertexCount;
 
 	D3D11_SUBRESOURCE_DATA subresourceData{ 0 };
-	subresourceData.pSysMem = vertices;
+	subresourceData.pSysMem = loadedVertices.data();
 
 	if (FAILED(device->CreateBuffer(&bufferDesc, &subresourceData, &vertexBuffer)))
 		return false;
@@ -54,7 +32,6 @@ bool Model::InitializeBuffers(ID3D11Device * device)
 		return false;
 
 	delete[] indices;
-	delete[] vertices;
 
 	return true;
 }
@@ -99,6 +76,17 @@ void Model::ReleaseTexture()
 	}
 }
 
+bool Model::LoadModel(std::wstring filename, IConcreteParser<Vertex> *parser)
+{
+	loadedVertices = parser->Load(filename);
+	return true;
+}
+
+void Model::ReleaseModel()
+{
+	loadedVertices = {};
+}
+
 Model::Model()
 {
 	vertexBuffer = nullptr;
@@ -112,8 +100,11 @@ Model::~Model()
 {
 }
 
-bool Model::Initialize(ID3D11Device * device, std::wstring textureFilename)
+bool Model::Initialize(ID3D11Device * device, std::wstring textureFilename, std::wstring modelFilename, IConcreteParser<Vertex> *parser)
 {
+	if (!LoadModel(modelFilename, parser))
+		return false;
+
 	if (!InitializeBuffers(device))
 		return false;
 

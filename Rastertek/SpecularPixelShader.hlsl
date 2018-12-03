@@ -2,8 +2,10 @@
 struct Input
 {
     float4 position : SV_POSITION;
-    float2 texel : TEXCOORD;
+    float2 texel : TEXCOORD0;
     float3 normal : NORMAL;
+	// TODO: ѕопробовать заменить TEXCOORD1 на свой собственный класс
+    float3 viewDirection : TEXCOORD1;
 };
 
 struct Output
@@ -16,7 +18,8 @@ cbuffer LightBuffer
     float4 ambientColor;
     float4 diffuseColor;
     float3 lightDirection;
-    float padding;
+    float specularPower;
+    float4 specularColor;
 };
 
 Texture2D shaderTexture;
@@ -31,11 +34,20 @@ Output main(Input input)
     float3 direction = -lightDirection;
     float intensity = saturate(dot(input.normal, direction));
 
-    if (intensity > 0.0f)
-        output.color += diffuseColor * intensity;
+    float4 spec = float4(0.0f, 0.0f, 0.0f, 0.0f);
 
-    output.color = saturate(output.color);
+    if (intensity > 0.0f)
+    {
+        output.color += diffuseColor * intensity;
+        output.color = saturate(output.color);
+
+        float3 reflection = normalize(2 * intensity * input.normal - direction);
+
+        spec = pow(saturate(dot(reflection, input.viewDirection)), specularPower);
+    }
+
     output.color = output.color * textureColor;
+    output.color = saturate(output.color + spec);
 
     return output;
 }

@@ -10,8 +10,7 @@ VertexShader::VertexShader(ID3D11Device *device, std::string filename, std::vect
 		throw std::exception("Cannot to create a vertex shader.");
 
 	if (FAILED(device->CreateInputLayout(inputElements.data(), inputElements.size(), bytecode.data(), bytecode.size(), &inputLayout)))
-		throw std::exception("Cannot to create an input layout.");
-
+		throw std::exception("Cannot to create an input layout.");	
 }
 
 
