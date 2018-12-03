@@ -9,11 +9,12 @@ bool Graphics::Render(float rotate)
 
 	camera.Render();
 
-	D3DXMATRIX world, view, proj;
+	D3DXMATRIX world, view, proj, ortho;
 	view = camera.GetViewMatrix();
 
 	d3d.GetWorldMatrix(world);
 	d3d.GetProjectionMatrix(proj);
+	d3d.GetOrthoMatrix(ortho);
 
 	D3DXMatrixRotationY(&world, rotate);
 
@@ -22,6 +23,15 @@ bool Graphics::Render(float rotate)
 	if (!shader.Render(d3d.GetDeviceContext(), model.GetIndexCount(), world, view, proj, model.GetTexture(), light.GetDirection(), light.GetDiffuse(), light.GetAmbient(), camera.GetPosition(), light.GetPower(), light.GetSpecular())) {
 		return false;
 	}
+
+	d3d.TurnZBufferOff();
+
+	D3DXMatrixIdentity(&world);
+	bitmap->Render(d3d.GetDeviceContext(), 400, 200);
+
+	textureShader.Render(d3d.GetDeviceContext(), bitmap->GetIndexCount(), world, view, ortho, bitmap->GetTexture());
+
+	d3d.TurnZBufferOn();
 
 	d3d.EndScene();
 
@@ -45,18 +55,18 @@ bool Graphics::Initialize(HINSTANCE hinstance, int width, int height, HWND hwnd)
 
 	camera.SetPosition({ 0.0f, 30.0f, -100.0f });
 
-	OpenFileDialog dialog{ hinstance, hwnd };
-	dialog.SetFilter(L"Image Files\0*.jpg;*.png;*.dds\0\0");
-	if (!dialog.ShowDialog())
-		return false;
-	auto textureFilename = dialog.GetFilename();
+	//OpenFileDialog dialog{ hinstance, hwnd };
+	//dialog.SetFilter(L"Image Files\0*.jpg;*.png;*.dds\0\0");
+	//if (!dialog.ShowDialog())
+	//	return false;
+	auto textureFilename = L"test.dds"; // dialog.GetFilename();
 
-	//dialog.SetFilter(L"Simple Text Vertex Format\0*.txt\0\0");
-	dialog.SetFilter(L"3DS Max Objects\0*.obj\0\0");
-	if (!dialog.ShowDialog())
-		return false;
+	////dialog.SetFilter(L"Simple Text Vertex Format\0*.txt\0\0");
+	//dialog.SetFilter(L"3DS Max Objects\0*.obj\0\0");
+	//if (!dialog.ShowDialog())
+	//	return false;
 
-	auto modelFilename = dialog.GetFilename();
+	auto modelFilename = L"teapot.obj"; // dialog.GetFilename();
 
 	ObjParser parser;
 
@@ -70,11 +80,19 @@ bool Graphics::Initialize(HINSTANCE hinstance, int width, int height, HWND hwnd)
 		return false;
 	}
 
+	if (!textureShader.Initialize(d3d.GetDevice())) {
+		MessageBox(nullptr, L"Could not to initialize the texture shader.", 0, MB_OK);
+		return false;
+	}
+
 	light.SetAmbient({ 0.15f, 0.15f, 0.15f, 1.0f });
 	light.SetDiffuse({ 1,1,1,1 });
 	light.SetDirection({ 0,0,1 });
 	light.SetSpecular({ 1.0f, 1.0f, 1.0f, 1.0f });
 	light.SetPower(32.0f);
+
+
+	bitmap = new Bitmap(d3d.GetDevice(), width, height, L"glass.jpg", 256, 256);
 
 	return true;
 }
@@ -93,7 +111,12 @@ bool Graphics::Frame()
 
 void Graphics::Shutdown()
 {
+	if (bitmap) {
+		delete bitmap;
+		bitmap = nullptr;
+	}
 	model.Shutdown();
 	shader.Shutdown();
+	textureShader.Shutdown();
 	d3d.Shutdown();
 }

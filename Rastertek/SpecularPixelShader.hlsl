@@ -2,10 +2,9 @@
 struct Input
 {
     float4 position : SV_POSITION;
-    float2 texel : TEXCOORD0;
+    float2 texel : TEXCOORD;
     float3 normal : NORMAL;
-	// TODO: ѕопробовать заменить TEXCOORD1 на свой собственный класс
-    float3 viewDirection : TEXCOORD1;
+    float3 viewDirection : VIEW_DIRECTION;
 };
 
 struct Output

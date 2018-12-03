@@ -4,8 +4,11 @@
 #include "D3D.h"
 #include "Camera.h"
 #include "SpecularShader.h"
+#include "TextureShader.h"
 #include "Model.h"
 #include "Light.h"
+#include "Bitmap.h"
+
 
 
 const bool FULL_SCREEN = false;
@@ -20,8 +23,10 @@ class Graphics
 	Camera camera;
 	Model model;
 	SpecularShader shader;
+	TextureShader textureShader;
 	Light light;
 	float rotation{ 0.0f };
+	Bitmap *bitmap{ nullptr };
 
 	bool Render(float time);
 public:

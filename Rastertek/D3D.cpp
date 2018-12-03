@@ -173,6 +173,11 @@ bool D3D::Initialize(int width, int height, bool vsyncEnabled, HWND hwnd, bool i
 
 	D3DXMatrixOrthoLH(&ortho, width, height, screenNear, screenDepth);
 
+	depthStencilDesc.DepthEnable = false;
+
+	if (FAILED(result = device->CreateDepthStencilState(&depthStencilDesc, &disabledStencilState)))
+		return false;
+
 	return true;
 }
 
@@ -180,6 +185,11 @@ void D3D::Shutdown()
 {
 	if (swapChain) {
 		swapChain->SetFullscreenState(FALSE, 0);
+	}
+
+	if (disabledStencilState) {
+		disabledStencilState->Release();
+		disabledStencilState = nullptr;
 	}
 
 	if (rasterizerState) {
@@ -269,4 +279,14 @@ void D3D::GetVideoCardinfo(std::wstring & desc, int & memory)
 {
 	desc = videoCardDesc;
 	memory = videoCardMemory;
+}
+
+void D3D::TurnZBufferOn()
+{
+	deviceContext->OMSetDepthStencilState(depthStencilState, 1);
+}
+
+void D3D::TurnZBufferOff()
+{
+	deviceContext->OMSetDepthStencilState(disabledStencilState, 1);
 }

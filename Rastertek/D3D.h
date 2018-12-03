@@ -24,7 +24,7 @@ class D3D
 	ID3D11DepthStencilView *depthStencilView{ nullptr };
 	ID3D11RasterizerState *rasterizerState{ nullptr };
 	D3DXMATRIX projection, world, ortho;
-
+	ID3D11DepthStencilState *disabledStencilState{ nullptr };
 
 public:
 	D3D();
@@ -45,7 +45,8 @@ public:
 
 	void GetVideoCardinfo(std::wstring& desc, int& memory);
 
-
+	void TurnZBufferOn();
+	void TurnZBufferOff();
 
 };
 

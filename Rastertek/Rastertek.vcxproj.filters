@@ -60,6 +60,9 @@
     <ClCompile Include="SpecularVertexShader.cpp">
       <Filter>Tutorial 10</Filter>
     </ClCompile>
+    <ClCompile Include="Bitmap.cpp">
+      <Filter>Tutorial 11</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.h" />
@@ -124,6 +127,9 @@
     <ClInclude Include="SpecularVertexShader.h">
       <Filter>Tutorial 10</Filter>
     </ClInclude>
+    <ClInclude Include="Bitmap.h">
+      <Filter>Tutorial 11</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="TexturePixelShader.hlsl">
@@ -169,6 +175,9 @@
     </Filter>
     <Filter Include="Tutorial 10">
       <UniqueIdentifier>{bba0a089-0810-40be-921e-f0ae01ffa89e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tutorial 11">
+      <UniqueIdentifier>{52494a75-b87d-4fe0-bf98-7aa62b075683}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
